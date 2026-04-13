@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../utils/api';
 import { useCart } from '../context/CartContext';
 import CartItem from '../components/CartItem';
 
@@ -47,7 +47,7 @@ export default function CartPage() {
         })),
       };
 
-      await axios.post('/api/orders', orderData);
+      await api.post('/api/orders', orderData);
 
       // Thành công → hiển thị success screen
       setOrderSuccess(true);

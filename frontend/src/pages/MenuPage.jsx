@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../utils/api';
 import { useCart } from '../context/CartContext';
 import ProductCard from '../components/ProductCard';
 import CategoryFilter from '../components/CategoryFilter';
@@ -34,8 +34,8 @@ export default function MenuPage() {
       try {
         setLoading(true);
         const [productsRes, categoriesRes] = await Promise.all([
-          axios.get('/api/products'),
-          axios.get('/api/products/categories'),
+          api.get('/api/products'),
+          api.get('/api/products/categories'),
         ]);
         setProducts(productsRes.data.data);
         setCategories(categoriesRes.data.data);

@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../utils/api';
 
 /**
  * AdminPage - Dashboard quản lý Bàn & Món ăn
@@ -65,7 +65,7 @@ export default function AdminPage() {
     }
 
     // Verify token
-    axios.get('/api/auth/me', { headers: { Authorization: `Bearer ${token}` } })
+    api.get('/api/auth/me', { headers: { Authorization: `Bearer ${token}` } })
       .then((res) => {
         setAdminInfo(res.data.data);
       })
@@ -82,7 +82,7 @@ export default function AdminPage() {
 
   const fetchTables = useCallback(async () => {
     try {
-      const res = await axios.get('/api/tables');
+      const res = await api.get('/api/tables');
       setTables(res.data.data);
     } catch (err) {
       console.error('Error fetching tables:', err);
@@ -92,7 +92,7 @@ export default function AdminPage() {
   const handleCreateTable = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('/api/tables', tableForm, getAuthHeaders());
+      await api.post('/api/tables', tableForm, getAuthHeaders());
       showMessage(`Đã tạo bàn ${tableForm.number}`);
       setTableForm({ number: '', name: '', seats: 4 });
       fetchTables();
@@ -104,7 +104,7 @@ export default function AdminPage() {
   const handleUpdateTable = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`/api/tables/${editingTable._id}`, tableForm, getAuthHeaders());
+      await api.put(`/api/tables/${editingTable._id}`, tableForm, getAuthHeaders());
       showMessage('Cập nhật bàn thành công');
       setEditingTable(null);
       setTableForm({ number: '', name: '', seats: 4 });
@@ -117,7 +117,7 @@ export default function AdminPage() {
   const handleDeleteTable = async (table) => {
     if (!confirm(`Xóa bàn ${table.number}?`)) return;
     try {
-      await axios.delete(`/api/tables/${table._id}`, getAuthHeaders());
+      await api.delete(`/api/tables/${table._id}`, getAuthHeaders());
       showMessage(`Đã xóa bàn ${table.number}`);
       fetchTables();
     } catch (err) {
@@ -137,7 +137,7 @@ export default function AdminPage() {
 
   const toggleTableActive = async (table) => {
     try {
-      await axios.put(`/api/tables/${table._id}`, { ...table, isActive: !table.isActive }, getAuthHeaders());
+      await api.put(`/api/tables/${table._id}`, { ...table, isActive: !table.isActive }, getAuthHeaders());
       fetchTables();
     } catch (err) {
       showMessage('Lỗi cập nhật trạng thái', 'error');
@@ -150,7 +150,7 @@ export default function AdminPage() {
 
   const fetchProducts = useCallback(async () => {
     try {
-      const res = await axios.get('/api/products/all', getAuthHeaders());
+      const res = await api.get('/api/products/all', getAuthHeaders());
       setProducts(res.data.data);
     } catch (err) {
       console.error('Error fetching products:', err);
@@ -160,7 +160,7 @@ export default function AdminPage() {
   const handleCreateProduct = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('/api/products', {
+      await api.post('/api/products', {
         ...productForm,
         price: Number(productForm.price),
       }, getAuthHeaders());
@@ -176,7 +176,7 @@ export default function AdminPage() {
   const handleUpdateProduct = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`/api/products/${editingProduct._id}`, {
+      await api.put(`/api/products/${editingProduct._id}`, {
         ...productForm,
         price: Number(productForm.price),
       }, getAuthHeaders());
@@ -193,7 +193,7 @@ export default function AdminPage() {
   const handleDeleteProduct = async (product) => {
     if (!confirm(`Xóa "${product.name}"?`)) return;
     try {
-      await axios.delete(`/api/products/${product._id}`, getAuthHeaders());
+      await api.delete(`/api/products/${product._id}`, getAuthHeaders());
       showMessage(`Đã xóa "${product.name}"`);
       fetchProducts();
     } catch (err) {
@@ -203,7 +203,7 @@ export default function AdminPage() {
 
   const toggleProductAvailable = async (product) => {
     try {
-      await axios.put(`/api/products/${product._id}`, {
+      await api.put(`/api/products/${product._id}`, {
         isAvailable: !product.isAvailable,
       }, getAuthHeaders());
       fetchProducts();

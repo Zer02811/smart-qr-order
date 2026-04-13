@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../utils/api';
 
 /**
  * AdminLoginPage - Trang đăng nhập admin
@@ -18,7 +18,7 @@ export default function AdminLoginPage() {
     setLoading(true);
 
     try {
-      const res = await axios.post('/api/auth/login', { username, password });
+      const res = await api.post('/api/auth/login', { username, password });
 
       // Lưu token vào localStorage
       localStorage.setItem('adminToken', res.data.data.token);

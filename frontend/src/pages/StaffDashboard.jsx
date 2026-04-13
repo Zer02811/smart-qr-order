@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import axios from 'axios';
+import api from '../utils/api';
 import socket from '../utils/socket';
 import OrderCard from '../components/OrderCard';
 import Notification from '../components/Notification';
@@ -67,7 +67,7 @@ export default function StaffDashboard() {
   const fetchOrders = useCallback(async () => {
     try {
       setLoading(true);
-      const res = await axios.get('/api/orders');
+      const res = await api.get('/api/orders');
       setOrders(res.data.data);
     } catch (err) {
       console.error('Error fetching orders:', err);
@@ -82,7 +82,7 @@ export default function StaffDashboard() {
   const handleUpdateStatus = useCallback(
     async (orderId, newStatus) => {
       try {
-        const res = await axios.patch(`/api/orders/${orderId}`, {
+        const res = await api.patch(`/api/orders/${orderId}`, {
           status: newStatus,
         });
 
