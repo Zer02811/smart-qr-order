@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../utils/api';
 import { useCart } from '../context/CartContext';
@@ -199,7 +199,7 @@ export default function CartPage() {
           <button
             onClick={handlePlaceOrder}
             disabled={loading}
-            style={{ padding: '20px 0' }}
+            style={{ padding: '16px 0', marginTop: '8px' }}
             className={`w-full rounded-2xl text-white font-semibold text-lg shadow-lg transition-all active:scale-[0.98] cursor-pointer ${
               loading
                 ? 'bg-gray-300 cursor-not-allowed'

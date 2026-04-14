@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import api from '../utils/api';
 import { useCart } from '../context/CartContext';
@@ -146,7 +146,8 @@ export default function MenuPage() {
           <div className="max-w-lg mx-auto">
             <button
               onClick={() => navigate('/cart')}
-              className="w-full flex items-center justify-between px-6 py-4 rounded-2xl bg-gradient-to-r from-pink-500 to-pink-400 text-white font-semibold shadow-lg shadow-pink-400/30 hover:shadow-xl hover:shadow-pink-400/40 transition-all active:scale-[0.98] cursor-pointer"
+              style={{ padding: '18px 28px' }}
+              className="w-full flex items-center justify-between rounded-2xl bg-gradient-to-r from-pink-500 to-pink-400 text-white font-semibold shadow-lg shadow-pink-400/30 hover:shadow-xl hover:shadow-pink-400/40 transition-all active:scale-[0.98] cursor-pointer"
               id="go-to-cart"
             >
               <div className="flex items-center gap-3">
