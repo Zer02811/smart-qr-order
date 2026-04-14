@@ -310,10 +310,10 @@ export default function AdminPage() {
         </div>
 
         {/* Tabs */}
-        <div className="max-w-6xl mx-auto flex gap-4 mt-5">
+        <div className="max-w-6xl mx-auto flex gap-3 mt-5">
           <button
             onClick={() => setActiveTab('tables')}
-            style={{ padding: '12px 24px' }}
+            style={{ padding: '10px 16px', fontSize: '13px' }}
             className={`category-tab ${activeTab === 'tables' ? 'active' : ''}`}
             id="tab-tables"
           >
@@ -321,7 +321,7 @@ export default function AdminPage() {
           </button>
           <button
             onClick={() => setActiveTab('products')}
-            style={{ padding: '12px 24px' }}
+            style={{ padding: '10px 16px', fontSize: '13px' }}
             className={`category-tab ${activeTab === 'products' ? 'active' : ''}`}
             id="tab-products"
           >
@@ -340,7 +340,8 @@ export default function AdminPage() {
             {/* Form thêm/sửa bàn */}
             <form
               onSubmit={editingTable ? handleUpdateTable : handleCreateTable}
-              className="glass-card p-5"
+              className="glass-card"
+              style={{ padding: '24px' }}
             >
               <h3 className="text-lg font-semibold text-[#4A3347] mb-4">
                 {editingTable ? '✏️ Sửa bàn' : '➕ Thêm bàn mới'}
@@ -450,7 +451,8 @@ export default function AdminPage() {
             {showProductForm && (
               <form
                 onSubmit={editingProduct ? handleUpdateProduct : handleCreateProduct}
-                className="glass-card p-5 space-y-4"
+                className="glass-card space-y-4"
+                style={{ padding: '24px' }}
               >
                 <h3 className="text-lg font-semibold text-[#4A3347]">
                   {editingProduct ? '✏️ Sửa món' : '➕ Thêm món mới'}
