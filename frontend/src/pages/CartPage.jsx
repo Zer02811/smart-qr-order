@@ -115,7 +115,7 @@ export default function CartPage() {
   return (
     <div className="min-h-screen pb-40">
       {/* Header */}
-      <header className="sticky top-0 z-40 px-4 py-4 bg-[#FFF5F7]/95 backdrop-blur-lg border-b border-pink-100">
+      <header className="sticky top-0 z-40 bg-[#FFF5F7]/95 backdrop-blur-lg border-b border-pink-100" style={{ padding: '16px 20px' }}>
         <div className="max-w-lg mx-auto flex items-center gap-4">
           <button
             onClick={() => navigate(`/order?table=${tableNumber}`)}
@@ -136,7 +136,7 @@ export default function CartPage() {
       </header>
 
       {/* Cart Items */}
-      <main className="px-4 py-4 max-w-lg mx-auto space-y-3">
+      <main style={{ padding: '16px 20px' }} className="max-w-lg mx-auto space-y-3">
         {items.map((item) => (
           <CartItem key={item.product} item={item} />
         ))}

@@ -68,7 +68,7 @@ export default function MenuPage() {
   return (
     <div className="min-h-screen pb-24">
       {/* Header */}
-      <header className="sticky top-0 z-40 px-4 pt-4 pb-3 bg-gradient-to-b from-[#FFF5F7] via-[#FFF5F7]/95 to-[#FFF5F7]/0">
+      <header className="sticky top-0 z-40 bg-gradient-to-b from-[#FFF5F7] via-[#FFF5F7]/95 to-[#FFF5F7]/0" style={{ padding: '16px 20px 12px' }}>
         <div className="max-w-lg mx-auto">
           {/* Title row */}
           <div className="flex items-center justify-between mb-3">
@@ -95,7 +95,7 @@ export default function MenuPage() {
       </header>
 
       {/* Content */}
-      <main className="px-4 max-w-lg mx-auto">
+      <main style={{ padding: '0 20px' }} className="max-w-lg mx-auto">
         {/* Loading state */}
         {loading && (
           <div className="flex flex-col items-center justify-center py-20">

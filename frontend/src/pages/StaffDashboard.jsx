@@ -1,4 +1,4 @@
-﻿import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import api from '../utils/api';
 import socket from '../utils/socket';
 import OrderCard from '../components/OrderCard';
@@ -202,7 +202,7 @@ export default function StaffDashboard() {
       </div>
 
       {/* Header */}
-      <header className="sticky top-0 z-40 px-6 py-4 bg-[#FFF5F7]/95 backdrop-blur-lg border-b border-pink-100">
+      <header className="sticky top-0 z-40 bg-[#FFF5F7]/95 backdrop-blur-lg border-b border-pink-100" style={{ padding: '16px 20px' }}>
         <div className="max-w-5xl mx-auto">
           <div className="flex items-center justify-between mb-4">
             <div>
@@ -256,7 +256,7 @@ export default function StaffDashboard() {
       </header>
 
       {/* Content */}
-      <main className="px-6 py-6 max-w-5xl mx-auto">
+      <main style={{ padding: '24px 20px' }} className="max-w-5xl mx-auto">
         {/* Loading */}
         {loading && (
           <div className="flex flex-col items-center justify-center py-20">

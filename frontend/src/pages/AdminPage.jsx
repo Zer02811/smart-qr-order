@@ -281,7 +281,7 @@ export default function AdminPage() {
       )}
 
       {/* Header */}
-      <header className="sticky top-0 z-40 px-6 py-4 bg-[#FFF5F7]/95 backdrop-blur-lg border-b border-pink-100">
+      <header className="sticky top-0 z-40 bg-[#FFF5F7]/95 backdrop-blur-lg border-b border-pink-100" style={{ padding: '16px 20px' }}>
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-bold gradient-text">Tiệm Dạo 5CE</h1>
@@ -309,9 +309,10 @@ export default function AdminPage() {
         </div>
 
         {/* Tabs */}
-        <div className="max-w-6xl mx-auto flex gap-2 mt-4">
+        <div className="max-w-6xl mx-auto flex gap-4 mt-5">
           <button
             onClick={() => setActiveTab('tables')}
+            style={{ padding: '12px 24px' }}
             className={`category-tab ${activeTab === 'tables' ? 'active' : ''}`}
             id="tab-tables"
           >
@@ -319,6 +320,7 @@ export default function AdminPage() {
           </button>
           <button
             onClick={() => setActiveTab('products')}
+            style={{ padding: '12px 24px' }}
             className={`category-tab ${activeTab === 'products' ? 'active' : ''}`}
             id="tab-products"
           >
@@ -327,7 +329,7 @@ export default function AdminPage() {
         </div>
       </header>
 
-      <main className="px-6 py-6 max-w-6xl mx-auto">
+      <main style={{ padding: '24px 20px' }} className="max-w-6xl mx-auto">
 
         {/* ==============================
             TAB: QUẢN LÝ BÀN
@@ -462,14 +464,16 @@ export default function AdminPage() {
           <div className="space-y-6 animate-fade-in-up">
             {/* Nút thêm món */}
             {!showProductForm && (
-              <button
-                onClick={() => { setShowProductForm(true); setEditingProduct(null); }}
-                style={{ padding: '14px 28px' }}
-                className="rounded-xl bg-gradient-to-r from-pink-500 to-pink-400 text-white font-semibold hover:shadow-lg hover:shadow-pink-400/30 transition-all active:scale-95 cursor-pointer"
-                id="add-product-btn"
-              >
-                ➕ Thêm món mới
-              </button>
+              <div className="flex justify-center">
+                <button
+                  onClick={() => { setShowProductForm(true); setEditingProduct(null); }}
+                  style={{ padding: '14px 28px' }}
+                  className="rounded-xl bg-gradient-to-r from-pink-500 to-pink-400 text-white font-semibold hover:shadow-lg hover:shadow-pink-400/30 transition-all active:scale-95 cursor-pointer"
+                  id="add-product-btn"
+                >
+                  ➕ Thêm món mới
+                </button>
+              </div>
             )}
 
             {/* Form thêm/sửa món */}
@@ -522,7 +526,7 @@ export default function AdminPage() {
                   rows={2}
                   className="w-full px-4 py-2.5 rounded-xl bg-pink-50/50 border border-pink-200 text-[#4A3347] placeholder-pink-300 focus:outline-none focus:border-pink-400 transition-colors resize-none"
                 />
-                <div className="flex gap-3">
+                <div className="flex gap-3 flex-wrap">
                   <button
                     type="submit"
                     style={{ padding: '12px 28px' }}
@@ -530,6 +534,16 @@ export default function AdminPage() {
                   >
                     {editingProduct ? 'Lưu thay đổi' : 'Tạo món'}
                   </button>
+                  {editingProduct && (
+                    <button
+                      type="button"
+                      onClick={() => handleDeleteProduct(editingProduct)}
+                      style={{ padding: '12px 28px' }}
+                      className="rounded-xl bg-red-50 text-red-400 font-semibold border border-red-200 hover:bg-red-100 transition-colors cursor-pointer"
+                    >
+                      🗑️ Xóa món này
+                    </button>
+                  )}
                   <button
                     type="button"
                     onClick={cancelEditProduct}
@@ -543,71 +557,35 @@ export default function AdminPage() {
             )}
 
             {/* Danh sách món */}
-            <div className="glass-card overflow-hidden">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-pink-100">
-                    <th style={{ padding: '16px 24px' }} className=" text-left text-xs font-semibold text-[#9B7D93] uppercase">Ảnh</th>
-                    <th style={{ padding: '16px 24px' }} className=" text-left text-xs font-semibold text-[#9B7D93] uppercase">Tên món</th>
-                    <th style={{ padding: '16px 24px' }} className=" text-left text-xs font-semibold text-[#9B7D93] uppercase">Danh mục</th>
-                    <th style={{ padding: '16px 24px' }} className=" text-left text-xs font-semibold text-[#9B7D93] uppercase">Giá</th>
-                    <th style={{ padding: '16px 24px' }} className=" text-left text-xs font-semibold text-[#9B7D93] uppercase">Trạng thái</th>
-                    <th style={{ padding: '16px 24px' }} className=" text-right text-xs font-semibold text-[#9B7D93] uppercase">Thao tác</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {products.map((product) => (
-                    <tr key={product._id} className={`border-b border-pink-50 hover:bg-pink-50/50 transition-colors ${!product.isAvailable ? 'opacity-50' : ''}`}>
-                      <td style={{ padding: '16px 24px' }} className="">
-                        <img
-                          src={product.image || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=80&h=80&fit=crop'}
-                          alt={product.name}
-                          className="w-12 h-12 rounded-lg object-cover"
-                        />
-                      </td>
-                      <td style={{ padding: '16px 24px' }} className="">
-                        <div className="text-[#4A3347] font-medium">{product.name}</div>
-                        {product.description && (
-                          <div className="text-[#9B7D93] text-xs mt-0.5 truncate max-w-[200px]">{product.description}</div>
-                        )}
-                      </td>
-                      <td style={{ padding: '16px 24px' }} className=" text-[#9B7D93] text-sm">{product.category}</td>
-                      <td style={{ padding: '16px 24px' }} className=" text-pink-500 font-semibold">{formatPrice(product.price)}</td>
-                      <td style={{ padding: '16px 24px' }} className="">
-                        <button
-                          onClick={() => toggleProductAvailable(product)}
-                          style={{ padding: '10px 20px' }}
-                          className={`rounded-full text-xs font-semibold cursor-pointer transition-colors ${
-                            product.isAvailable
-                              ? 'bg-green-50 text-green-500 border border-green-200 hover:bg-green-100'
-                              : 'bg-red-50 text-red-400 border border-red-200 hover:bg-red-100'
-                          }`}
-                        >
-                          {product.isAvailable ? '🟢 Đang bán' : '🔴 Hết hàng'}
-                        </button>
-                      </td>
-                      <td style={{ padding: '16px 24px' }} className=" text-right">
-                        <div className="flex justify-end gap-2">
-                          <button
-                            onClick={() => startEditProduct(product)}
-                            style={{ padding: '10px 20px' }}
-                            className="rounded-lg bg-amber-50 text-amber-500 text-xs font-semibold hover:bg-amber-100 transition-colors cursor-pointer"
-                          >
-                            ✏️ Sửa
-                          </button>
-                          <button
-                            onClick={() => handleDeleteProduct(product)}
-                            style={{ padding: '10px 20px' }}
-                            className="rounded-lg bg-red-50 text-red-400 text-xs font-semibold hover:bg-red-100 transition-colors cursor-pointer"
-                          >
-                            🗑️ Xóa
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+            {/* Danh sách món - Mobile-friendly cards */}
+            <div className="space-y-3">
+              {products.map((product) => (
+                <div
+                  key={product._id}
+                  className={`glass-card flex items-center gap-4 transition-all ${!product.isAvailable ? 'opacity-50' : ''}`}
+                  style={{ padding: '14px 18px' }}
+                >
+                  {/* Ảnh */}
+                  <img
+                    src={product.image || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=80&h=80&fit=crop'}
+                    alt={product.name}
+                    className="w-14 h-14 rounded-xl object-cover flex-shrink-0"
+                  />
+                  {/* Tên món */}
+                  <div className="flex-1 min-w-0">
+                    <p className="text-[#4A3347] font-semibold text-sm truncate">{product.name}</p>
+                    <p className="text-pink-400 text-xs font-medium mt-0.5">{formatPrice(product.price)}</p>
+                  </div>
+                  {/* Nút sửa */}
+                  <button
+                    onClick={() => startEditProduct(product)}
+                    style={{ padding: '10px 20px' }}
+                    className="flex-shrink-0 rounded-xl bg-amber-50 text-amber-500 text-xs font-semibold hover:bg-amber-100 transition-colors cursor-pointer border border-amber-200"
+                  >
+                    ✏️ Sửa
+                  </button>
+                </div>
+              ))}
               {products.length === 0 && (
                 <div className="text-center py-10 text-[#9B7D93]">Chưa có món nào</div>
               )}
