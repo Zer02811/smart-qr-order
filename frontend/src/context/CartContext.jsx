@@ -8,13 +8,14 @@ const ACTIONS = {
   ADD_ITEM: 'ADD_ITEM',
   REMOVE_ITEM: 'REMOVE_ITEM',
   UPDATE_QUANTITY: 'UPDATE_QUANTITY',
+  UPDATE_NOTE: 'UPDATE_NOTE',
   CLEAR_CART: 'CLEAR_CART',
   SET_TABLE: 'SET_TABLE',
 };
 
 // --- Initial state ---
 const initialState = {
-  items: [],        // [{ product, name, price, image, quantity }]
+  items: [],        // [{ product, name, price, image, quantity, note }]
   tableNumber: '',  // Số bàn từ URL query
 };
 
@@ -51,6 +52,7 @@ function cartReducer(state, action) {
             price: product.price,
             image: product.image,
             quantity: 1,
+            note: '',
           },
         ],
       };
@@ -78,6 +80,16 @@ function cartReducer(state, action) {
         ...state,
         items: state.items.map((item) =>
           item.product === productId ? { ...item, quantity } : item
+        ),
+      };
+    }
+
+    case ACTIONS.UPDATE_NOTE: {
+      const { productId, note } = action.payload;
+      return {
+        ...state,
+        items: state.items.map((item) =>
+          item.product === productId ? { ...item, note } : item
         ),
       };
     }
@@ -111,6 +123,10 @@ export function CartProvider({ children }) {
     dispatch({ type: ACTIONS.UPDATE_QUANTITY, payload: { productId, quantity } });
   }, []);
 
+  const updateNote = useCallback((productId, note) => {
+    dispatch({ type: ACTIONS.UPDATE_NOTE, payload: { productId, note } });
+  }, []);
+
   const clearCart = useCallback(() => {
     dispatch({ type: ACTIONS.CLEAR_CART });
   }, []);
@@ -134,6 +150,7 @@ export function CartProvider({ children }) {
     addToCart,
     removeFromCart,
     updateQuantity,
+    updateNote,
     clearCart,
     setTableNumber,
   };

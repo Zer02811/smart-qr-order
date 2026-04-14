@@ -6,7 +6,8 @@ import CartItem from '../components/CartItem';
 
 /**
  * CartPage - Trang giỏ hàng & xác nhận đặt món
- * - Hiển thị danh sách items trong giỏ
+ * Tiệm dạo 5CE - Pink Pastel Theme
+ * - Hiển thị danh sách items trong giỏ với ghi chú
  * - Nút tăng/giảm số lượng
  * - Nút "Xác nhận đặt món" → POST /api/orders
  */
@@ -44,6 +45,7 @@ export default function CartPage() {
           price: item.price,
           quantity: item.quantity,
           image: item.image,
+          note: item.note || '',
         })),
       };
 
@@ -67,22 +69,22 @@ export default function CartPage() {
     return (
       <div className="min-h-screen flex items-center justify-center px-4">
         <div className="text-center animate-fade-in-up">
-          <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center shadow-2xl shadow-green-500/30">
+          <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center shadow-2xl shadow-green-300/30">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-white" viewBox="0 0 20 20" fill="currentColor">
               <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
             </svg>
           </div>
-          <h2 className="text-2xl font-bold text-white mb-2">Đặt món thành công!</h2>
-          <p className="text-slate-400 mb-2">Đơn hàng của bạn đã được gửi đến bếp.</p>
-          <p className="text-slate-500 text-sm mb-8">
-            Bàn <span className="text-orange-400 font-semibold">{tableNumber}</span> • Vui lòng chờ trong giây lát
+          <h2 className="text-2xl font-bold text-[#4A3347] mb-2">Đặt món thành công!</h2>
+          <p className="text-[#9B7D93] mb-2">Đơn hàng của bạn đã được gửi đến bếp.</p>
+          <p className="text-[#9B7D93] text-sm mb-8">
+            Bàn <span className="text-pink-500 font-semibold">{tableNumber}</span> • Vui lòng chờ trong giây lát
           </p>
           <button
             onClick={() => navigate(`/order?table=${tableNumber}`)}
-            className="px-8 py-3 rounded-2xl bg-gradient-to-r from-orange-500 to-amber-500 text-white font-semibold shadow-lg shadow-orange-500/30 hover:shadow-xl transition-all active:scale-95 cursor-pointer"
+            className="px-8 py-3 rounded-2xl bg-gradient-to-r from-pink-500 to-pink-400 text-white font-semibold shadow-lg shadow-pink-400/30 hover:shadow-xl transition-all active:scale-95 cursor-pointer"
             id="order-more"
           >
-            🍽️ Gọi thêm món
+            🧋 Gọi thêm món
           </button>
         </div>
       </div>
@@ -95,11 +97,11 @@ export default function CartPage() {
       <div className="min-h-screen flex flex-col items-center justify-center px-4">
         <div className="text-center animate-fade-in-up">
           <p className="text-6xl mb-4">🛒</p>
-          <h2 className="text-xl font-bold text-white mb-2">Giỏ hàng trống</h2>
-          <p className="text-slate-400 mb-8">Hãy chọn món ăn yêu thích của bạn</p>
+          <h2 className="text-xl font-bold text-[#4A3347] mb-2">Giỏ hàng trống</h2>
+          <p className="text-[#9B7D93] mb-8">Hãy chọn món yêu thích của bạn</p>
           <button
             onClick={() => navigate(`/order?table=${tableNumber}`)}
-            className="px-8 py-3 rounded-2xl bg-gradient-to-r from-orange-500 to-amber-500 text-white font-semibold shadow-lg shadow-orange-500/30 transition-all active:scale-95 cursor-pointer"
+            className="px-8 py-3 rounded-2xl bg-gradient-to-r from-pink-500 to-pink-400 text-white font-semibold shadow-lg shadow-pink-400/30 transition-all active:scale-95 cursor-pointer"
             id="go-to-menu"
           >
             ← Quay lại menu
@@ -113,11 +115,11 @@ export default function CartPage() {
   return (
     <div className="min-h-screen pb-40">
       {/* Header */}
-      <header className="sticky top-0 z-40 px-4 py-4 bg-slate-900/95 backdrop-blur-lg border-b border-slate-700/50">
+      <header className="sticky top-0 z-40 px-4 py-4 bg-[#FFF5F7]/95 backdrop-blur-lg border-b border-pink-100">
         <div className="max-w-lg mx-auto flex items-center gap-4">
           <button
             onClick={() => navigate(`/order?table=${tableNumber}`)}
-            className="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center text-white hover:bg-slate-700 transition-colors cursor-pointer"
+            className="w-10 h-10 rounded-xl bg-white border border-pink-200 flex items-center justify-center text-[#4A3347] hover:bg-pink-50 transition-colors cursor-pointer"
             id="back-to-menu"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -125,8 +127,8 @@ export default function CartPage() {
             </svg>
           </button>
           <div>
-            <h1 className="text-lg font-bold text-white">Giỏ hàng</h1>
-            <p className="text-slate-400 text-sm">
+            <h1 className="text-lg font-bold text-[#4A3347]">Giỏ hàng</h1>
+            <p className="text-[#9B7D93] text-sm">
               {totalItems} món • Bàn {tableNumber}
             </p>
           </div>
@@ -145,14 +147,14 @@ export default function CartPage() {
         <div className="max-w-lg mx-auto space-y-3">
           {/* Error message */}
           {error && (
-            <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-sm text-center animate-shake">
+            <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-red-500 text-sm text-center animate-shake">
               {error}
             </div>
           )}
 
           {/* Tổng cộng */}
           <div className="flex items-center justify-between px-2">
-            <span className="text-slate-400">Tổng cộng ({totalItems} món)</span>
+            <span className="text-[#9B7D93]">Tổng cộng ({totalItems} món)</span>
             <span className="text-2xl font-bold gradient-text">
               {formatPrice(totalAmount)}
             </span>
@@ -160,15 +162,15 @@ export default function CartPage() {
 
           {/* Phương thức thanh toán */}
           <div className="px-2">
-            <p className="text-sm text-slate-400 mb-2">Phương thức thanh toán</p>
+            <p className="text-sm text-[#9B7D93] mb-2">Phương thức thanh toán</p>
             <div className="grid grid-cols-2 gap-3">
               <button
                 type="button"
                 onClick={() => setPaymentMethod('cash')}
                 className={`flex items-center gap-2 px-4 py-3 rounded-xl border text-sm font-medium transition-all cursor-pointer ${
                   paymentMethod === 'cash'
-                    ? 'border-orange-500 bg-orange-500/10 text-orange-400'
-                    : 'border-slate-600/50 bg-slate-800/50 text-slate-400 hover:border-slate-500'
+                    ? 'border-pink-400 bg-pink-50 text-pink-500'
+                    : 'border-pink-200 bg-white text-[#9B7D93] hover:border-pink-300'
                 }`}
                 id="payment-cash"
               >
@@ -180,8 +182,8 @@ export default function CartPage() {
                 onClick={() => setPaymentMethod('transfer')}
                 className={`flex items-center gap-2 px-4 py-3 rounded-xl border text-sm font-medium transition-all cursor-pointer ${
                   paymentMethod === 'transfer'
-                    ? 'border-blue-500 bg-blue-500/10 text-blue-400'
-                    : 'border-slate-600/50 bg-slate-800/50 text-slate-400 hover:border-slate-500'
+                    ? 'border-blue-400 bg-blue-50 text-blue-500'
+                    : 'border-pink-200 bg-white text-[#9B7D93] hover:border-pink-300'
                 }`}
                 id="payment-transfer"
               >
@@ -197,8 +199,8 @@ export default function CartPage() {
             disabled={loading}
             className={`w-full py-4 rounded-2xl text-white font-semibold text-lg shadow-lg transition-all active:scale-[0.98] cursor-pointer ${
               loading
-                ? 'bg-slate-600 cursor-not-allowed'
-                : 'bg-gradient-to-r from-orange-500 to-amber-500 shadow-orange-500/30 hover:shadow-xl hover:shadow-orange-500/40'
+                ? 'bg-gray-300 cursor-not-allowed'
+                : 'bg-gradient-to-r from-pink-500 to-pink-400 shadow-pink-400/30 hover:shadow-xl hover:shadow-pink-400/40'
             }`}
             id="confirm-order"
           >

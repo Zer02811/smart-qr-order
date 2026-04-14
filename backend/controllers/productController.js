@@ -10,8 +10,8 @@ const getAllProducts = async (req, res, next) => {
   try {
     const { category } = req.query;
 
-    // Tạo filter object - chỉ lấy món còn phục vụ
-    const filter = { isAvailable: true };
+    // Trả về tất cả sản phẩm (bao gồm hết hàng) để frontend hiển thị trạng thái
+    const filter = {};
 
     // Nếu có query category, thêm vào filter
     if (category) {
@@ -63,7 +63,7 @@ const getProductById = async (req, res, next) => {
 const getCategories = async (req, res, next) => {
   try {
     // Sử dụng distinct để lấy danh sách category không trùng lặp
-    const categories = await Product.distinct('category', { isAvailable: true });
+    const categories = await Product.distinct('category');
 
     res.status(200).json({
       success: true,

@@ -4,6 +4,7 @@ import api from '../utils/api';
 
 /**
  * AdminLoginPage - Trang đăng nhập admin
+ * Tiệm dạo 5CE - Pink Pastel Theme
  */
 export default function AdminLoginPage() {
   const navigate = useNavigate();
@@ -40,25 +41,25 @@ export default function AdminLoginPage() {
       <div className="w-full max-w-sm animate-fade-in-up">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center shadow-2xl shadow-orange-500/30">
-            <span className="text-4xl">🔐</span>
+          <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-pink-500 to-pink-400 flex items-center justify-center shadow-2xl shadow-pink-400/30 animate-float">
+            <span className="text-4xl">🧋</span>
           </div>
-          <h1 className="text-2xl font-bold gradient-text">Admin Panel</h1>
-          <p className="text-slate-400 text-sm mt-1">Smart QR Order</p>
+          <h1 className="text-2xl font-bold gradient-text">Tiệm dạo 5CE</h1>
+          <p className="text-[#9B7D93] text-sm mt-1">Đăng nhập quản trị</p>
         </div>
 
         {/* Form */}
         <form onSubmit={handleLogin} className="glass-card p-6 space-y-5">
           {/* Error */}
           {error && (
-            <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-sm text-center animate-shake">
+            <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-red-500 text-sm text-center animate-shake">
               {error}
             </div>
           )}
 
           {/* Username */}
           <div>
-            <label htmlFor="username" className="block text-sm font-medium text-slate-300 mb-1.5">
+            <label htmlFor="username" className="block text-sm font-medium text-[#4A3347] mb-1.5">
               Tên đăng nhập
             </label>
             <input
@@ -68,13 +69,13 @@ export default function AdminLoginPage() {
               onChange={(e) => setUsername(e.target.value)}
               placeholder="admin"
               required
-              className="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-600/50 text-white placeholder-slate-500 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-colors"
+              className="w-full px-4 py-3 rounded-xl bg-pink-50/50 border border-pink-200 text-[#4A3347] placeholder-pink-300 focus:outline-none focus:border-pink-400 focus:ring-1 focus:ring-pink-400 transition-colors"
             />
           </div>
 
           {/* Password */}
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-slate-300 mb-1.5">
+            <label htmlFor="password" className="block text-sm font-medium text-[#4A3347] mb-1.5">
               Mật khẩu
             </label>
             <input
@@ -84,7 +85,7 @@ export default function AdminLoginPage() {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••"
               required
-              className="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-600/50 text-white placeholder-slate-500 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-colors"
+              className="w-full px-4 py-3 rounded-xl bg-pink-50/50 border border-pink-200 text-[#4A3347] placeholder-pink-300 focus:outline-none focus:border-pink-400 focus:ring-1 focus:ring-pink-400 transition-colors"
             />
           </div>
 
@@ -94,8 +95,8 @@ export default function AdminLoginPage() {
             disabled={loading}
             className={`w-full py-3 rounded-xl text-white font-semibold transition-all cursor-pointer ${
               loading
-                ? 'bg-slate-600 cursor-not-allowed'
-                : 'bg-gradient-to-r from-orange-500 to-amber-500 hover:shadow-lg hover:shadow-orange-500/30 active:scale-[0.98]'
+                ? 'bg-gray-300 cursor-not-allowed'
+                : 'bg-gradient-to-r from-pink-500 to-pink-400 hover:shadow-lg hover:shadow-pink-400/30 active:scale-[0.98]'
             }`}
             id="admin-login-btn"
           >

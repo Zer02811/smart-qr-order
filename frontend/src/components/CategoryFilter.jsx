@@ -1,6 +1,7 @@
 /**
  * CategoryFilter - Tabs lọc món theo danh mục
  * Hiển thị dạng scrollable horizontal trên mobile
+ * Chỉ 2 category: Đồ uống, Đồ ăn vặt
  */
 export default function CategoryFilter({ categories, activeCategory, onSelect }) {
   return (
@@ -11,17 +12,15 @@ export default function CategoryFilter({ categories, activeCategory, onSelect })
         className={`category-tab ${activeCategory === '' ? 'active' : ''}`}
         id="category-all"
       >
-        🍽️ Tất cả
+        🧋 Tất cả
       </button>
 
       {/* Tabs cho từng category */}
       {categories.map((category) => {
-        // Emoji cho từng loại
+        // Emoji cho từng loại (quán trà sữa & đồ ăn vặt)
         const emoji = {
-          'Món chính': '🍜',
-          'Khai vị': '🥗',
-          'Tráng miệng': '🍰',
-          'Đồ uống': '🥤',
+          'Đồ uống': '🧋',
+          'Đồ ăn vặt': '🍿',
         }[category] || '📂';
 
         return (

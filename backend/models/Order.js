@@ -29,6 +29,11 @@ const orderItemSchema = new mongoose.Schema(
       type: String,
       default: '',
     },
+    note: {
+      type: String,
+      default: '',
+      maxlength: [200, 'Ghi chú không được vượt quá 200 ký tự'],
+    },
   },
   { _id: false } // Không cần _id riêng cho sub-document
 );

@@ -6,6 +6,7 @@ import Notification from '../components/Notification';
 
 /**
  * StaffDashboard - Dashboard real-time cho nhân viên
+ * Tiệm dạo 5CE - Pink Pastel Theme
  * - Kết nối Socket.io và join 'staff-room'
  * - Lắng nghe NEW_ORDER → hiển thị thông báo + phát âm thanh
  * - Cập nhật trạng thái đơn hàng
@@ -201,19 +202,19 @@ export default function StaffDashboard() {
       </div>
 
       {/* Header */}
-      <header className="sticky top-0 z-40 px-6 py-4 bg-slate-900/95 backdrop-blur-lg border-b border-slate-700/50">
+      <header className="sticky top-0 z-40 px-6 py-4 bg-[#FFF5F7]/95 backdrop-blur-lg border-b border-pink-100">
         <div className="max-w-5xl mx-auto">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h1 className="text-2xl font-bold gradient-text">Staff Dashboard</h1>
-              <p className="text-slate-400 text-sm mt-1">Quản lý đơn hàng thời gian thực</p>
+              <h1 className="text-2xl font-bold gradient-text">Tiệm dạo 5CE</h1>
+              <p className="text-[#9B7D93] text-sm mt-1">Quản lý đơn hàng thời gian thực</p>
             </div>
 
             {/* Connection status */}
-            <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium ${
+            <div className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium ${
               connected
-                ? 'bg-green-500/10 text-green-400 border border-green-500/30'
-                : 'bg-red-500/10 text-red-400 border border-red-500/30'
+                ? 'bg-green-50 text-green-500 border border-green-200'
+                : 'bg-red-50 text-red-400 border border-red-200'
             }`}>
               <span className={`w-2 h-2 rounded-full ${connected ? 'bg-green-400 animate-pulse' : 'bg-red-400'}`}></span>
               {connected ? 'Đang kết nối' : 'Mất kết nối'}
@@ -259,8 +260,8 @@ export default function StaffDashboard() {
         {/* Loading */}
         {loading && (
           <div className="flex flex-col items-center justify-center py-20">
-            <div className="w-12 h-12 border-4 border-orange-500 border-t-transparent rounded-full animate-spin"></div>
-            <p className="text-slate-400 mt-4">Đang tải đơn hàng...</p>
+            <div className="w-12 h-12 border-4 border-pink-400 border-t-transparent rounded-full animate-spin"></div>
+            <p className="text-[#9B7D93] mt-4">Đang tải đơn hàng...</p>
           </div>
         )}
 
@@ -268,10 +269,10 @@ export default function StaffDashboard() {
         {!loading && filteredOrders.length === 0 && (
           <div className="text-center py-20 animate-fade-in-up">
             <p className="text-5xl mb-4">📋</p>
-            <h3 className="text-xl font-semibold text-white mb-2">
+            <h3 className="text-xl font-semibold text-[#4A3347] mb-2">
               {filter ? 'Không có đơn hàng nào' : 'Chưa có đơn hàng'}
             </h3>
-            <p className="text-slate-400">
+            <p className="text-[#9B7D93]">
               {filter
                 ? `Không có đơn hàng với trạng thái này`
                 : 'Đơn hàng mới sẽ xuất hiện ở đây khi khách gọi món'}

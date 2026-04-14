@@ -4,6 +4,7 @@ import api from '../utils/api';
 
 /**
  * AdminPage - Dashboard quản lý Bàn & Món ăn
+ * Tiệm dạo 5CE - Pink Pastel Theme
  * - Yêu cầu đăng nhập (JWT token)
  * - 2 tabs: Quản lý bàn / Quản lý món
  */
@@ -20,7 +21,7 @@ export default function AdminPage() {
   // --- Products state ---
   const [products, setProducts] = useState([]);
   const [productForm, setProductForm] = useState({
-    name: '', price: '', image: '', category: 'Món chính', description: '',
+    name: '', price: '', image: '', category: 'Đồ uống', description: '',
   });
   const [editingProduct, setEditingProduct] = useState(null);
   const [showProductForm, setShowProductForm] = useState(false);
@@ -165,7 +166,7 @@ export default function AdminPage() {
         price: Number(productForm.price),
       }, getAuthHeaders());
       showMessage('Tạo món thành công');
-      setProductForm({ name: '', price: '', image: '', category: 'Món chính', description: '' });
+      setProductForm({ name: '', price: '', image: '', category: 'Đồ uống', description: '' });
       setShowProductForm(false);
       fetchProducts();
     } catch (err) {
@@ -183,7 +184,7 @@ export default function AdminPage() {
       showMessage('Cập nhật thành công');
       setEditingProduct(null);
       setShowProductForm(false);
-      setProductForm({ name: '', price: '', image: '', category: 'Món chính', description: '' });
+      setProductForm({ name: '', price: '', image: '', category: 'Đồ uống', description: '' });
       fetchProducts();
     } catch (err) {
       showMessage(err.response?.data?.message || 'Lỗi cập nhật', 'error');
@@ -226,7 +227,7 @@ export default function AdminPage() {
 
   const cancelEditProduct = () => {
     setEditingProduct(null);
-    setProductForm({ name: '', price: '', image: '', category: 'Món chính', description: '' });
+    setProductForm({ name: '', price: '', image: '', category: 'Đồ uống', description: '' });
     setShowProductForm(false);
   };
 
@@ -261,7 +262,7 @@ export default function AdminPage() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="w-12 h-12 border-4 border-orange-500 border-t-transparent rounded-full animate-spin"></div>
+        <div className="w-12 h-12 border-4 border-pink-400 border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -280,24 +281,26 @@ export default function AdminPage() {
       )}
 
       {/* Header */}
-      <header className="sticky top-0 z-40 px-6 py-4 bg-slate-900/95 backdrop-blur-lg border-b border-slate-700/50">
+      <header className="sticky top-0 z-40 px-6 py-4 bg-[#FFF5F7]/95 backdrop-blur-lg border-b border-pink-100">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-bold gradient-text">Admin Panel</h1>
-            <p className="text-slate-400 text-sm mt-0.5">
+            <h1 className="text-2xl font-bold gradient-text">Tiệm dạo 5CE</h1>
+            <p className="text-[#9B7D93] text-sm mt-0.5">
               Xin chào, {adminInfo?.name || 'Admin'}
             </p>
           </div>
           <div className="flex items-center gap-3">
             <a
               href="/staff"
-              className="px-4 py-2 rounded-xl bg-blue-500/20 text-blue-300 text-sm font-medium border border-blue-500/30 hover:bg-blue-500/30 transition-colors"
+              style={{ padding: '10px 20px' }}
+              className="rounded-xl bg-blue-50 text-blue-500 text-sm font-medium border border-blue-200 hover:bg-blue-100 transition-colors"
             >
               📋 Staff Dashboard
             </a>
             <button
               onClick={handleLogout}
-              className="px-4 py-2 rounded-xl bg-red-500/20 text-red-300 text-sm font-medium border border-red-500/30 hover:bg-red-500/30 transition-colors cursor-pointer"
+              style={{ padding: '10px 20px' }}
+              className="rounded-xl bg-red-50 text-red-400 text-sm font-medium border border-red-200 hover:bg-red-100 transition-colors cursor-pointer"
               id="logout-btn"
             >
               Đăng xuất
@@ -319,7 +322,7 @@ export default function AdminPage() {
             className={`category-tab ${activeTab === 'products' ? 'active' : ''}`}
             id="tab-products"
           >
-            🍽️ Quản lý món ({products.length})
+            🧋 Quản lý món ({products.length})
           </button>
         </div>
       </header>
@@ -336,7 +339,7 @@ export default function AdminPage() {
               onSubmit={editingTable ? handleUpdateTable : handleCreateTable}
               className="glass-card p-5"
             >
-              <h3 className="text-lg font-semibold text-white mb-4">
+              <h3 className="text-lg font-semibold text-[#4A3347] mb-4">
                 {editingTable ? '✏️ Sửa bàn' : '➕ Thêm bàn mới'}
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -347,14 +350,14 @@ export default function AdminPage() {
                   onChange={(e) => setTableForm({ ...tableForm, number: e.target.value })}
                   required
                   disabled={!!editingTable}
-                  className="px-4 py-2.5 rounded-xl bg-slate-800/50 border border-slate-600/50 text-white placeholder-slate-500 focus:outline-none focus:border-orange-500 transition-colors disabled:opacity-50"
+                  className="px-4 py-2.5 rounded-xl bg-pink-50/50 border border-pink-200 text-[#4A3347] placeholder-pink-300 focus:outline-none focus:border-pink-400 transition-colors disabled:opacity-50"
                 />
                 <input
                   type="text"
                   placeholder="Tên bàn (VD: Bàn VIP)"
                   value={tableForm.name}
                   onChange={(e) => setTableForm({ ...tableForm, name: e.target.value })}
-                  className="px-4 py-2.5 rounded-xl bg-slate-800/50 border border-slate-600/50 text-white placeholder-slate-500 focus:outline-none focus:border-orange-500 transition-colors"
+                  className="px-4 py-2.5 rounded-xl bg-pink-50/50 border border-pink-200 text-[#4A3347] placeholder-pink-300 focus:outline-none focus:border-pink-400 transition-colors"
                 />
                 <input
                   type="number"
@@ -363,12 +366,13 @@ export default function AdminPage() {
                   onChange={(e) => setTableForm({ ...tableForm, seats: parseInt(e.target.value) || 4 })}
                   min="1"
                   max="20"
-                  className="px-4 py-2.5 rounded-xl bg-slate-800/50 border border-slate-600/50 text-white focus:outline-none focus:border-orange-500 transition-colors"
+                  className="px-4 py-2.5 rounded-xl bg-pink-50/50 border border-pink-200 text-[#4A3347] focus:outline-none focus:border-pink-400 transition-colors"
                 />
                 <div className="flex gap-2">
                   <button
                     type="submit"
-                    className="flex-1 px-4 py-2.5 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 text-white font-semibold hover:shadow-lg transition-all active:scale-95 cursor-pointer"
+                    style={{ padding: '12px 24px' }}
+                    className="flex-1 rounded-xl bg-gradient-to-r from-pink-500 to-pink-400 text-white font-semibold hover:shadow-lg hover:shadow-pink-400/30 transition-all active:scale-95 cursor-pointer"
                   >
                     {editingTable ? 'Lưu' : 'Thêm'}
                   </button>
@@ -376,7 +380,8 @@ export default function AdminPage() {
                     <button
                       type="button"
                       onClick={cancelEditTable}
-                      className="px-4 py-2.5 rounded-xl bg-slate-700 text-slate-300 hover:bg-slate-600 transition-colors cursor-pointer"
+                      style={{ padding: '12px 20px' }}
+                      className="rounded-xl bg-gray-100 text-[#9B7D93] hover:bg-gray-200 transition-colors cursor-pointer"
                     >
                       Hủy
                     </button>
@@ -389,32 +394,33 @@ export default function AdminPage() {
             <div className="glass-card overflow-hidden">
               <table className="w-full">
                 <thead>
-                  <tr className="border-b border-slate-700/50">
-                    <th className="px-5 py-3 text-left text-xs font-semibold text-slate-400 uppercase">Số bàn</th>
-                    <th className="px-5 py-3 text-left text-xs font-semibold text-slate-400 uppercase">Tên</th>
-                    <th className="px-5 py-3 text-left text-xs font-semibold text-slate-400 uppercase">Ghế</th>
-                    <th className="px-5 py-3 text-left text-xs font-semibold text-slate-400 uppercase">Trạng thái</th>
-                    <th className="px-5 py-3 text-left text-xs font-semibold text-slate-400 uppercase">QR Link</th>
-                    <th className="px-5 py-3 text-right text-xs font-semibold text-slate-400 uppercase">Thao tác</th>
+                  <tr className="border-b border-pink-100">
+                    <th className="px-5 py-3 text-left text-xs font-semibold text-[#9B7D93] uppercase">Số bàn</th>
+                    <th className="px-5 py-3 text-left text-xs font-semibold text-[#9B7D93] uppercase">Tên</th>
+                    <th className="px-5 py-3 text-left text-xs font-semibold text-[#9B7D93] uppercase">Ghế</th>
+                    <th className="px-5 py-3 text-left text-xs font-semibold text-[#9B7D93] uppercase">Trạng thái</th>
+                    <th className="px-5 py-3 text-left text-xs font-semibold text-[#9B7D93] uppercase">QR Link</th>
+                    <th className="px-5 py-3 text-right text-xs font-semibold text-[#9B7D93] uppercase">Thao tác</th>
                   </tr>
                 </thead>
                 <tbody>
                   {tables.map((table) => (
-                    <tr key={table._id} className="border-b border-slate-800/50 hover:bg-slate-800/30 transition-colors">
+                    <tr key={table._id} className="border-b border-pink-50 hover:bg-pink-50/50 transition-colors">
                       <td className="px-5 py-3">
-                        <span className="w-10 h-10 inline-flex items-center justify-center rounded-lg bg-gradient-to-br from-orange-500 to-amber-500 text-white font-bold">
+                        <span className="w-10 h-10 inline-flex items-center justify-center rounded-lg bg-gradient-to-br from-pink-500 to-pink-400 text-white font-bold">
                           {table.number}
                         </span>
                       </td>
-                      <td className="px-5 py-3 text-white">{table.name}</td>
-                      <td className="px-5 py-3 text-slate-300">{table.seats} ghế</td>
+                      <td className="px-5 py-3 text-[#4A3347]">{table.name}</td>
+                      <td className="px-5 py-3 text-[#9B7D93]">{table.seats} ghế</td>
                       <td className="px-5 py-3">
                         <button
                           onClick={() => toggleTableActive(table)}
-                          className={`px-3 py-1 rounded-full text-xs font-medium cursor-pointer transition-colors ${
+                          style={{ padding: '10px 20px' }}
+                          className={`rounded-full text-xs font-semibold cursor-pointer transition-colors ${
                             table.isActive
-                              ? 'bg-green-500/20 text-green-400 border border-green-500/30'
-                              : 'bg-red-500/20 text-red-400 border border-red-500/30'
+                              ? 'bg-green-50 text-green-500 border border-green-200 hover:bg-green-100'
+                              : 'bg-red-50 text-red-400 border border-red-200 hover:bg-red-100'
                           }`}
                         >
                           {table.isActive ? '🟢 Hoạt động' : '🔴 Tạm ngưng'}
@@ -423,7 +429,8 @@ export default function AdminPage() {
                       <td className="px-5 py-3">
                         <button
                           onClick={() => copyQRLink(table.number)}
-                          className="px-3 py-1 rounded-lg bg-blue-500/20 text-blue-300 text-xs border border-blue-500/30 hover:bg-blue-500/30 transition-colors cursor-pointer"
+                          style={{ padding: '10px 20px' }}
+                          className="rounded-lg bg-blue-50 text-blue-500 text-xs font-semibold border border-blue-200 hover:bg-blue-100 transition-colors cursor-pointer"
                         >
                           📋 Copy link
                         </button>
@@ -432,13 +439,15 @@ export default function AdminPage() {
                         <div className="flex justify-end gap-2">
                           <button
                             onClick={() => startEditTable(table)}
-                            className="px-3 py-1.5 rounded-lg bg-amber-500/20 text-amber-300 text-xs hover:bg-amber-500/30 transition-colors cursor-pointer"
+                            style={{ padding: '10px 20px' }}
+                            className="rounded-lg bg-amber-50 text-amber-500 text-xs font-semibold hover:bg-amber-100 transition-colors cursor-pointer"
                           >
                             ✏️ Sửa
                           </button>
                           <button
                             onClick={() => handleDeleteTable(table)}
-                            className="px-3 py-1.5 rounded-lg bg-red-500/20 text-red-300 text-xs hover:bg-red-500/30 transition-colors cursor-pointer"
+                            style={{ padding: '10px 20px' }}
+                            className="rounded-lg bg-red-50 text-red-400 text-xs font-semibold hover:bg-red-100 transition-colors cursor-pointer"
                           >
                             🗑️ Xóa
                           </button>
@@ -449,7 +458,7 @@ export default function AdminPage() {
                 </tbody>
               </table>
               {tables.length === 0 && (
-                <div className="text-center py-10 text-slate-400">Chưa có bàn nào</div>
+                <div className="text-center py-10 text-[#9B7D93]">Chưa có bàn nào</div>
               )}
             </div>
           </div>
@@ -464,7 +473,8 @@ export default function AdminPage() {
             {!showProductForm && (
               <button
                 onClick={() => { setShowProductForm(true); setEditingProduct(null); }}
-                className="px-6 py-3 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 text-white font-semibold hover:shadow-lg hover:shadow-orange-500/30 transition-all active:scale-95 cursor-pointer"
+                style={{ padding: '14px 28px' }}
+                className="rounded-xl bg-gradient-to-r from-pink-500 to-pink-400 text-white font-semibold hover:shadow-lg hover:shadow-pink-400/30 transition-all active:scale-95 cursor-pointer"
                 id="add-product-btn"
               >
                 ➕ Thêm món mới
@@ -477,8 +487,8 @@ export default function AdminPage() {
                 onSubmit={editingProduct ? handleUpdateProduct : handleCreateProduct}
                 className="glass-card p-5 space-y-4"
               >
-                <h3 className="text-lg font-semibold text-white">
-                  {editingProduct ? '✏️ Sửa món ăn' : '➕ Thêm món mới'}
+                <h3 className="text-lg font-semibold text-[#4A3347]">
+                  {editingProduct ? '✏️ Sửa món' : '➕ Thêm món mới'}
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <input
@@ -487,7 +497,7 @@ export default function AdminPage() {
                     value={productForm.name}
                     onChange={(e) => setProductForm({ ...productForm, name: e.target.value })}
                     required
-                    className="px-4 py-2.5 rounded-xl bg-slate-800/50 border border-slate-600/50 text-white placeholder-slate-500 focus:outline-none focus:border-orange-500 transition-colors"
+                    className="px-4 py-2.5 rounded-xl bg-pink-50/50 border border-pink-200 text-[#4A3347] placeholder-pink-300 focus:outline-none focus:border-pink-400 transition-colors"
                   />
                   <input
                     type="number"
@@ -496,44 +506,44 @@ export default function AdminPage() {
                     onChange={(e) => setProductForm({ ...productForm, price: e.target.value })}
                     required
                     min="0"
-                    className="px-4 py-2.5 rounded-xl bg-slate-800/50 border border-slate-600/50 text-white placeholder-slate-500 focus:outline-none focus:border-orange-500 transition-colors"
+                    className="px-4 py-2.5 rounded-xl bg-pink-50/50 border border-pink-200 text-[#4A3347] placeholder-pink-300 focus:outline-none focus:border-pink-400 transition-colors"
                   />
                   <input
                     type="url"
                     placeholder="URL ảnh"
                     value={productForm.image}
                     onChange={(e) => setProductForm({ ...productForm, image: e.target.value })}
-                    className="px-4 py-2.5 rounded-xl bg-slate-800/50 border border-slate-600/50 text-white placeholder-slate-500 focus:outline-none focus:border-orange-500 transition-colors"
+                    className="px-4 py-2.5 rounded-xl bg-pink-50/50 border border-pink-200 text-[#4A3347] placeholder-pink-300 focus:outline-none focus:border-pink-400 transition-colors"
                   />
                   <select
                     value={productForm.category}
                     onChange={(e) => setProductForm({ ...productForm, category: e.target.value })}
-                    className="px-4 py-2.5 rounded-xl bg-slate-800/50 border border-slate-600/50 text-white focus:outline-none focus:border-orange-500 transition-colors"
+                    className="px-4 py-2.5 rounded-xl bg-pink-50/50 border border-pink-200 text-[#4A3347] focus:outline-none focus:border-pink-400 transition-colors"
                   >
-                    <option value="Món chính">🍜 Món chính</option>
-                    <option value="Khai vị">🥗 Khai vị</option>
-                    <option value="Tráng miệng">🍰 Tráng miệng</option>
-                    <option value="Đồ uống">🥤 Đồ uống</option>
+                    <option value="Đồ uống">🧋 Đồ uống</option>
+                    <option value="Đồ ăn vặt">🍿 Đồ ăn vặt</option>
                   </select>
                 </div>
                 <textarea
-                  placeholder="Mô tả món ăn"
+                  placeholder="Mô tả món"
                   value={productForm.description}
                   onChange={(e) => setProductForm({ ...productForm, description: e.target.value })}
                   rows={2}
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-800/50 border border-slate-600/50 text-white placeholder-slate-500 focus:outline-none focus:border-orange-500 transition-colors resize-none"
+                  className="w-full px-4 py-2.5 rounded-xl bg-pink-50/50 border border-pink-200 text-[#4A3347] placeholder-pink-300 focus:outline-none focus:border-pink-400 transition-colors resize-none"
                 />
                 <div className="flex gap-3">
                   <button
                     type="submit"
-                    className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 text-white font-semibold hover:shadow-lg transition-all active:scale-95 cursor-pointer"
+                    style={{ padding: '12px 28px' }}
+                    className="rounded-xl bg-gradient-to-r from-pink-500 to-pink-400 text-white font-semibold hover:shadow-lg transition-all active:scale-95 cursor-pointer"
                   >
                     {editingProduct ? 'Lưu thay đổi' : 'Tạo món'}
                   </button>
                   <button
                     type="button"
                     onClick={cancelEditProduct}
-                    className="px-6 py-2.5 rounded-xl bg-slate-700 text-slate-300 hover:bg-slate-600 transition-colors cursor-pointer"
+                    style={{ padding: '12px 28px' }}
+                    className="rounded-xl bg-gray-100 text-[#9B7D93] hover:bg-gray-200 transition-colors cursor-pointer"
                   >
                     Hủy
                   </button>
@@ -545,18 +555,18 @@ export default function AdminPage() {
             <div className="glass-card overflow-hidden">
               <table className="w-full">
                 <thead>
-                  <tr className="border-b border-slate-700/50">
-                    <th className="px-5 py-3 text-left text-xs font-semibold text-slate-400 uppercase">Ảnh</th>
-                    <th className="px-5 py-3 text-left text-xs font-semibold text-slate-400 uppercase">Tên món</th>
-                    <th className="px-5 py-3 text-left text-xs font-semibold text-slate-400 uppercase">Danh mục</th>
-                    <th className="px-5 py-3 text-left text-xs font-semibold text-slate-400 uppercase">Giá</th>
-                    <th className="px-5 py-3 text-left text-xs font-semibold text-slate-400 uppercase">Trạng thái</th>
-                    <th className="px-5 py-3 text-right text-xs font-semibold text-slate-400 uppercase">Thao tác</th>
+                  <tr className="border-b border-pink-100">
+                    <th className="px-5 py-3 text-left text-xs font-semibold text-[#9B7D93] uppercase">Ảnh</th>
+                    <th className="px-5 py-3 text-left text-xs font-semibold text-[#9B7D93] uppercase">Tên món</th>
+                    <th className="px-5 py-3 text-left text-xs font-semibold text-[#9B7D93] uppercase">Danh mục</th>
+                    <th className="px-5 py-3 text-left text-xs font-semibold text-[#9B7D93] uppercase">Giá</th>
+                    <th className="px-5 py-3 text-left text-xs font-semibold text-[#9B7D93] uppercase">Trạng thái</th>
+                    <th className="px-5 py-3 text-right text-xs font-semibold text-[#9B7D93] uppercase">Thao tác</th>
                   </tr>
                 </thead>
                 <tbody>
                   {products.map((product) => (
-                    <tr key={product._id} className={`border-b border-slate-800/50 hover:bg-slate-800/30 transition-colors ${!product.isAvailable ? 'opacity-50' : ''}`}>
+                    <tr key={product._id} className={`border-b border-pink-50 hover:bg-pink-50/50 transition-colors ${!product.isAvailable ? 'opacity-50' : ''}`}>
                       <td className="px-5 py-3">
                         <img
                           src={product.image || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=80&h=80&fit=crop'}
@@ -565,36 +575,39 @@ export default function AdminPage() {
                         />
                       </td>
                       <td className="px-5 py-3">
-                        <div className="text-white font-medium">{product.name}</div>
+                        <div className="text-[#4A3347] font-medium">{product.name}</div>
                         {product.description && (
-                          <div className="text-slate-400 text-xs mt-0.5 truncate max-w-[200px]">{product.description}</div>
+                          <div className="text-[#9B7D93] text-xs mt-0.5 truncate max-w-[200px]">{product.description}</div>
                         )}
                       </td>
-                      <td className="px-5 py-3 text-slate-300 text-sm">{product.category}</td>
-                      <td className="px-5 py-3 text-orange-400 font-semibold">{formatPrice(product.price)}</td>
+                      <td className="px-5 py-3 text-[#9B7D93] text-sm">{product.category}</td>
+                      <td className="px-5 py-3 text-pink-500 font-semibold">{formatPrice(product.price)}</td>
                       <td className="px-5 py-3">
                         <button
                           onClick={() => toggleProductAvailable(product)}
-                          className={`px-3 py-1 rounded-full text-xs font-medium cursor-pointer transition-colors ${
+                          style={{ padding: '10px 20px' }}
+                          className={`rounded-full text-xs font-semibold cursor-pointer transition-colors ${
                             product.isAvailable
-                              ? 'bg-green-500/20 text-green-400 border border-green-500/30'
-                              : 'bg-red-500/20 text-red-400 border border-red-500/30'
+                              ? 'bg-green-50 text-green-500 border border-green-200 hover:bg-green-100'
+                              : 'bg-red-50 text-red-400 border border-red-200 hover:bg-red-100'
                           }`}
                         >
-                          {product.isAvailable ? '🟢 Đang bán' : '🔴 Tạm ẩn'}
+                          {product.isAvailable ? '🟢 Đang bán' : '🔴 Hết hàng'}
                         </button>
                       </td>
                       <td className="px-5 py-3 text-right">
                         <div className="flex justify-end gap-2">
                           <button
                             onClick={() => startEditProduct(product)}
-                            className="px-3 py-1.5 rounded-lg bg-amber-500/20 text-amber-300 text-xs hover:bg-amber-500/30 transition-colors cursor-pointer"
+                            style={{ padding: '10px 20px' }}
+                            className="rounded-lg bg-amber-50 text-amber-500 text-xs font-semibold hover:bg-amber-100 transition-colors cursor-pointer"
                           >
                             ✏️ Sửa
                           </button>
                           <button
                             onClick={() => handleDeleteProduct(product)}
-                            className="px-3 py-1.5 rounded-lg bg-red-500/20 text-red-300 text-xs hover:bg-red-500/30 transition-colors cursor-pointer"
+                            style={{ padding: '10px 20px' }}
+                            className="rounded-lg bg-red-50 text-red-400 text-xs font-semibold hover:bg-red-100 transition-colors cursor-pointer"
                           >
                             🗑️ Xóa
                           </button>
@@ -605,7 +618,7 @@ export default function AdminPage() {
                 </tbody>
               </table>
               {products.length === 0 && (
-                <div className="text-center py-10 text-slate-400">Chưa có món nào</div>
+                <div className="text-center py-10 text-[#9B7D93]">Chưa có món nào</div>
               )}
             </div>
           </div>
