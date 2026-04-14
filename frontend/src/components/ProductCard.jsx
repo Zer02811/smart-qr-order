@@ -1,4 +1,4 @@
-﻿import { useCart } from '../context/CartContext';
+import { useCart } from '../context/CartContext';
 
 /**
  * ProductCard - Card hiển thị một món ăn/đồ uống
@@ -59,35 +59,37 @@ export default function ProductCard({ product }) {
           {product.name}
         </h3>
         {product.description && (
-          <p className="text-xs text-[#9B7D93] mb-4 line-clamp-2 leading-relaxed">
+          <p className="text-xs text-[#9B7D93] mb-3 line-clamp-2 leading-relaxed">
             {product.description}
           </p>
         )}
 
-        {/* Giá + Nút thêm */}
-        <div className="flex items-center justify-between mt-auto gap-3">
-          <span className="text-lg font-bold gradient-text truncate">
-            {formatPrice(product.price)}
-          </span>
-          {!isOutOfStock ? (
-            <button
-              onClick={() => addToCart(product)}
-              style={{ padding: '14px 28px' }}
-              className="flex-shrink-0 whitespace-nowrap flex items-center gap-1.5 rounded-3xl bg-gradient-to-r from-pink-500 to-pink-400 text-white text-sm font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-pink-500/30 hover:scale-105 active:scale-95 cursor-pointer"
-              id={`add-to-cart-${product._id}`}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clipRule="evenodd" />
-              </svg>
-              Thêm
-            </button>
-          ) : (
-            <span style={{ padding: '14px 28px' }} className="flex-shrink-0 whitespace-nowrap rounded-3xl bg-gray-200 text-gray-500 text-sm font-semibold">
-              Hết hàng
-            </span>
-          )}
-        </div>
+        {/* Giá */}
+        <span className="text-lg font-bold gradient-text">
+          {formatPrice(product.price)}
+        </span>
       </div>
+
+      {/* Nút thêm - nút tròn góc dưới phải */}
+      {!isOutOfStock ? (
+        <button
+          onClick={() => addToCart(product)}
+          style={{ width: '42px', height: '42px', bottom: '16px', right: '16px' }}
+          className="absolute rounded-full bg-gradient-to-r from-pink-500 to-pink-400 text-white flex items-center justify-center shadow-lg shadow-pink-400/30 transition-all duration-300 hover:scale-110 hover:shadow-xl hover:shadow-pink-500/40 active:scale-90 cursor-pointer"
+          id={`add-to-cart-${product._id}`}
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fillRule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clipRule="evenodd" />
+          </svg>
+        </button>
+      ) : (
+        <div
+          style={{ bottom: '16px', right: '16px', padding: '8px 14px' }}
+          className="absolute rounded-full bg-gray-200 text-gray-500 text-xs font-semibold"
+        >
+          Hết
+        </div>
+      )}
     </div>
   );
 }
