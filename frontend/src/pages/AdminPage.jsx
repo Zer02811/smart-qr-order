@@ -196,6 +196,7 @@ export default function AdminPage() {
     try {
       await api.delete(`/api/products/${product._id}`, getAuthHeaders());
       showMessage(`Đã xóa "${product.name}"`);
+      cancelEditProduct();
       fetchProducts();
     } catch (err) {
       showMessage(err.response?.data?.message || 'Lỗi xóa món', 'error');
@@ -385,71 +386,40 @@ export default function AdminPage() {
               </div>
             </form>
 
-            {/* Danh sách bàn */}
-            <div className="glass-card overflow-hidden">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-pink-100">
-                    <th style={{ padding: '16px 24px' }} className="text-left text-xs font-semibold text-[#9B7D93] uppercase">Số bàn</th>
-                    <th style={{ padding: '16px 24px' }} className="text-left text-xs font-semibold text-[#9B7D93] uppercase">Tên</th>
-                    <th style={{ padding: '16px 24px' }} className="text-left text-xs font-semibold text-[#9B7D93] uppercase">Trạng thái</th>
-                    <th style={{ padding: '16px 24px' }} className="text-left text-xs font-semibold text-[#9B7D93] uppercase">QR Link</th>
-                    <th style={{ padding: '16px 24px' }} className="text-right text-xs font-semibold text-[#9B7D93] uppercase">Thao tác</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {tables.map((table) => (
-                    <tr key={table._id} className="border-b border-pink-50 hover:bg-pink-50/50 transition-colors">
-                      <td style={{ padding: '16px 24px' }} className="">
-                        <span className="w-10 h-10 inline-flex items-center justify-center rounded-lg bg-gradient-to-br from-pink-500 to-pink-400 text-white font-bold">
-                          {table.number}
-                        </span>
-                      </td>
-                      <td style={{ padding: '16px 24px' }} className=" text-[#4A3347]">{table.name}</td>
-                      <td style={{ padding: '16px 24px' }} className="">
-                        <button
-                          onClick={() => toggleTableActive(table)}
-                          style={{ padding: '10px 20px' }}
-                          className={`rounded-full text-xs font-semibold cursor-pointer transition-colors ${
-                            table.isActive
-                              ? 'bg-green-50 text-green-500 border border-green-200 hover:bg-green-100'
-                              : 'bg-red-50 text-red-400 border border-red-200 hover:bg-red-100'
-                          }`}
-                        >
-                          {table.isActive ? '🟢 Hoạt động' : '🔴 Tạm ngưng'}
-                        </button>
-                      </td>
-                      <td style={{ padding: '16px 24px' }} className="">
-                        <button
-                          onClick={() => copyQRLink(table.number)}
-                          style={{ padding: '10px 20px' }}
-                          className="rounded-lg bg-blue-50 text-blue-500 text-xs font-semibold border border-blue-200 hover:bg-blue-100 transition-colors cursor-pointer"
-                        >
-                          📋 Copy link
-                        </button>
-                      </td>
-                      <td style={{ padding: '16px 24px' }} className=" text-right">
-                        <div className="flex justify-end gap-2">
-                          <button
-                            onClick={() => startEditTable(table)}
-                            style={{ padding: '10px 20px' }}
-                            className="rounded-lg bg-amber-50 text-amber-500 text-xs font-semibold hover:bg-amber-100 transition-colors cursor-pointer"
-                          >
-                            ✏️ Sửa
-                          </button>
-                          <button
-                            onClick={() => handleDeleteTable(table)}
-                            style={{ padding: '10px 20px' }}
-                            className="rounded-lg bg-red-50 text-red-400 text-xs font-semibold hover:bg-red-100 transition-colors cursor-pointer"
-                          >
-                            🗑️ Xóa
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+            {/* Danh sách bàn - Mobile-friendly cards */}
+            <div className="space-y-3">
+              {tables.map((table) => (
+                <div
+                  key={table._id}
+                  className="glass-card flex items-center gap-3"
+                  style={{ padding: '14px 18px' }}
+                >
+                  {/* Số bàn */}
+                  <span className="w-11 h-11 flex-shrink-0 inline-flex items-center justify-center rounded-xl bg-gradient-to-br from-pink-500 to-pink-400 text-white font-bold text-lg shadow-md">
+                    {table.number}
+                  </span>
+                  {/* Tên bàn */}
+                  <span className="flex-1 text-[#4A3347] font-medium text-sm truncate min-w-0">
+                    {table.name}
+                  </span>
+                  {/* Copy link */}
+                  <button
+                    onClick={() => copyQRLink(table.number)}
+                    style={{ padding: '8px 16px' }}
+                    className="flex-shrink-0 rounded-lg bg-blue-50 text-blue-500 text-xs font-semibold border border-blue-200 hover:bg-blue-100 transition-colors cursor-pointer"
+                  >
+                    📋 Link
+                  </button>
+                  {/* Xóa */}
+                  <button
+                    onClick={() => handleDeleteTable(table)}
+                    style={{ padding: '8px 14px' }}
+                    className="flex-shrink-0 rounded-lg bg-red-50 text-red-400 text-xs font-semibold border border-red-200 hover:bg-red-100 transition-colors cursor-pointer"
+                  >
+                    🗑️
+                  </button>
+                </div>
+              ))}
               {tables.length === 0 && (
                 <div className="text-center py-10 text-[#9B7D93]">Chưa có bàn nào</div>
               )}
