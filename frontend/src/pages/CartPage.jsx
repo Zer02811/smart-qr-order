@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../utils/api';
 import { useCart } from '../context/CartContext';
@@ -6,7 +6,7 @@ import CartItem from '../components/CartItem';
 
 /**
  * CartPage - Trang giỏ hàng & xác nhận đặt món
- * Tiệm dạo 5CE - Pink Pastel Theme
+ * Tiệm Dạo 5CE - Pink Pastel Theme
  * - Hiển thị danh sách items trong giỏ với ghi chú
  * - Nút tăng/giảm số lượng
  * - Nút "Xác nhận đặt món" → POST /api/orders
@@ -153,7 +153,7 @@ export default function CartPage() {
           )}
 
           {/* Tổng cộng */}
-          <div className="flex items-center justify-between px-2">
+          <div className="flex items-center justify-between" style={{ padding: '0 8px' }}>
             <span className="text-[#9B7D93]">Tổng cộng ({totalItems} món)</span>
             <span className="text-2xl font-bold gradient-text">
               {formatPrice(totalAmount)}
@@ -161,13 +161,14 @@ export default function CartPage() {
           </div>
 
           {/* Phương thức thanh toán */}
-          <div className="px-2">
-            <p className="text-sm text-[#9B7D93] mb-2">Phương thức thanh toán</p>
-            <div className="grid grid-cols-2 gap-3">
+          <div style={{ padding: '0 8px' }}>
+            <p className="text-sm text-[#9B7D93] mb-3 text-center">Phương thức thanh toán</p>
+            <div className="grid grid-cols-2 gap-4">
               <button
                 type="button"
                 onClick={() => setPaymentMethod('cash')}
-                className={`flex items-center gap-2 px-4 py-3 rounded-xl border text-sm font-medium transition-all cursor-pointer ${
+                style={{ padding: '14px 20px' }}
+                className={`flex items-center justify-center gap-2 rounded-xl border text-sm font-medium transition-all cursor-pointer ${
                   paymentMethod === 'cash'
                     ? 'border-pink-400 bg-pink-50 text-pink-500'
                     : 'border-pink-200 bg-white text-[#9B7D93] hover:border-pink-300'
@@ -180,7 +181,8 @@ export default function CartPage() {
               <button
                 type="button"
                 onClick={() => setPaymentMethod('transfer')}
-                className={`flex items-center gap-2 px-4 py-3 rounded-xl border text-sm font-medium transition-all cursor-pointer ${
+                style={{ padding: '14px 20px' }}
+                className={`flex items-center justify-center gap-2 rounded-xl border text-sm font-medium transition-all cursor-pointer ${
                   paymentMethod === 'transfer'
                     ? 'border-blue-400 bg-blue-50 text-blue-500'
                     : 'border-pink-200 bg-white text-[#9B7D93] hover:border-pink-300'
@@ -197,7 +199,8 @@ export default function CartPage() {
           <button
             onClick={handlePlaceOrder}
             disabled={loading}
-            className={`w-full py-4 rounded-2xl text-white font-semibold text-lg shadow-lg transition-all active:scale-[0.98] cursor-pointer ${
+            style={{ padding: '20px 0' }}
+            className={`w-full rounded-2xl text-white font-semibold text-lg shadow-lg transition-all active:scale-[0.98] cursor-pointer ${
               loading
                 ? 'bg-gray-300 cursor-not-allowed'
                 : 'bg-gradient-to-r from-pink-500 to-pink-400 shadow-pink-400/30 hover:shadow-xl hover:shadow-pink-400/40'

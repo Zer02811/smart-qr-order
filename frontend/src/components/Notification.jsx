@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 
 /**
  * Notification - Toast notification component
  * Hiển thị thông báo đơn hàng mới với animation
- * Pink pastel theme - Tiệm dạo 5CE
+ * Pink pastel theme - Tiệm Dạo 5CE
  */
 export default function Notification({ message, type = 'info', onClose, duration = 5000 }) {
   const [isVisible, setIsVisible] = useState(true);

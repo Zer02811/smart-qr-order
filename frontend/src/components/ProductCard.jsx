@@ -1,8 +1,8 @@
-import { useCart } from '../context/CartContext';
+﻿import { useCart } from '../context/CartContext';
 
 /**
  * ProductCard - Card hiển thị một món ăn/đồ uống
- * Pink pastel theme cho Tiệm dạo 5CE
+ * Pink pastel theme cho Tiệm Dạo 5CE
  * Hỗ trợ hiển thị trạng thái hết hàng
  */
 export default function ProductCard({ product }) {
@@ -54,18 +54,18 @@ export default function ProductCard({ product }) {
       </div>
 
       {/* Thông tin */}
-      <div className="p-4">
-        <h3 className="text-base font-semibold text-[#4A3347] mb-1 line-clamp-1">
+      <div style={{ padding: '16px 20px 20px' }}>
+        <h3 className="text-base font-semibold text-[#4A3347] mb-1.5 line-clamp-1">
           {product.name}
         </h3>
         {product.description && (
-          <p className="text-xs text-[#9B7D93] mb-3 line-clamp-2 leading-relaxed">
+          <p className="text-xs text-[#9B7D93] mb-4 line-clamp-2 leading-relaxed">
             {product.description}
           </p>
         )}
 
         {/* Giá + Nút thêm */}
-        <div className="flex items-center justify-between mt-auto gap-2">
+        <div className="flex items-center justify-between mt-auto gap-3">
           <span className="text-lg font-bold gradient-text truncate">
             {formatPrice(product.price)}
           </span>

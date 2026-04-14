@@ -16,7 +16,7 @@ export default function CartItem({ item }) {
   };
 
   return (
-    <div className="glass-card p-4 animate-fade-in-up">
+    <div className="glass-card animate-fade-in-up" style={{ padding: '20px' }}>
       <div className="flex gap-4">
         {/* Ảnh thu nhỏ */}
         <div className="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0">
@@ -82,14 +82,15 @@ export default function CartItem({ item }) {
       </div>
 
       {/* Ô ghi chú cho từng món */}
-      <div className="mt-3 pt-3 border-t border-pink-100">
+      <div style={{ marginTop: '16px', paddingTop: '16px', borderTop: '1px solid rgba(244,114,182,0.15)' }}>
         <input
           type="text"
           value={item.note || ''}
           onChange={(e) => updateNote(item.product, e.target.value)}
           placeholder="📝 Ghi chú: ít đá, giảm đường, không trân châu..."
           maxLength={200}
-          className="w-full px-3 py-2 rounded-xl bg-pink-50/80 border border-pink-200/50 text-[#4A3347] text-sm placeholder-pink-300 focus:outline-none focus:border-pink-400 focus:ring-1 focus:ring-pink-300 transition-colors"
+          style={{ padding: '12px 16px' }}
+          className="w-full rounded-xl bg-pink-50/80 border border-pink-200/50 text-[#4A3347] text-sm placeholder-pink-300 focus:outline-none focus:border-pink-400 focus:ring-1 focus:ring-pink-300 transition-colors"
           id={`note-${item.product}`}
         />
       </div>

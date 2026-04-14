@@ -1,10 +1,10 @@
-import { useState, useEffect, useCallback } from 'react';
+﻿import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../utils/api';
 
 /**
  * AdminPage - Dashboard quản lý Bàn & Món ăn
- * Tiệm dạo 5CE - Pink Pastel Theme
+ * Tiệm Dạo 5CE - Pink Pastel Theme
  * - Yêu cầu đăng nhập (JWT token)
  * - 2 tabs: Quản lý bàn / Quản lý món
  */
@@ -284,7 +284,7 @@ export default function AdminPage() {
       <header className="sticky top-0 z-40 px-6 py-4 bg-[#FFF5F7]/95 backdrop-blur-lg border-b border-pink-100">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-bold gradient-text">Tiệm dạo 5CE</h1>
+            <h1 className="text-2xl font-bold gradient-text">Tiệm Dạo 5CE</h1>
             <p className="text-[#9B7D93] text-sm mt-0.5">
               Xin chào, {adminInfo?.name || 'Admin'}
             </p>
@@ -395,25 +395,25 @@ export default function AdminPage() {
               <table className="w-full">
                 <thead>
                   <tr className="border-b border-pink-100">
-                    <th className="px-5 py-3 text-left text-xs font-semibold text-[#9B7D93] uppercase">Số bàn</th>
-                    <th className="px-5 py-3 text-left text-xs font-semibold text-[#9B7D93] uppercase">Tên</th>
-                    <th className="px-5 py-3 text-left text-xs font-semibold text-[#9B7D93] uppercase">Ghế</th>
-                    <th className="px-5 py-3 text-left text-xs font-semibold text-[#9B7D93] uppercase">Trạng thái</th>
-                    <th className="px-5 py-3 text-left text-xs font-semibold text-[#9B7D93] uppercase">QR Link</th>
-                    <th className="px-5 py-3 text-right text-xs font-semibold text-[#9B7D93] uppercase">Thao tác</th>
+                    <th style={{ padding: '16px 24px' }} className="text-left text-xs font-semibold text-[#9B7D93] uppercase">Số bàn</th>
+                    <th style={{ padding: '16px 24px' }} className="text-left text-xs font-semibold text-[#9B7D93] uppercase">Tên</th>
+                    <th style={{ padding: '16px 24px' }} className="text-left text-xs font-semibold text-[#9B7D93] uppercase">Ghế</th>
+                    <th style={{ padding: '16px 24px' }} className="text-left text-xs font-semibold text-[#9B7D93] uppercase">Trạng thái</th>
+                    <th style={{ padding: '16px 24px' }} className="text-left text-xs font-semibold text-[#9B7D93] uppercase">QR Link</th>
+                    <th style={{ padding: '16px 24px' }} className="text-right text-xs font-semibold text-[#9B7D93] uppercase">Thao tác</th>
                   </tr>
                 </thead>
                 <tbody>
                   {tables.map((table) => (
                     <tr key={table._id} className="border-b border-pink-50 hover:bg-pink-50/50 transition-colors">
-                      <td className="px-5 py-3">
+                      <td style={{ padding: '16px 24px' }} className="">
                         <span className="w-10 h-10 inline-flex items-center justify-center rounded-lg bg-gradient-to-br from-pink-500 to-pink-400 text-white font-bold">
                           {table.number}
                         </span>
                       </td>
-                      <td className="px-5 py-3 text-[#4A3347]">{table.name}</td>
-                      <td className="px-5 py-3 text-[#9B7D93]">{table.seats} ghế</td>
-                      <td className="px-5 py-3">
+                      <td style={{ padding: '16px 24px' }} className=" text-[#4A3347]">{table.name}</td>
+                      <td style={{ padding: '16px 24px' }} className=" text-[#9B7D93]">{table.seats} ghế</td>
+                      <td style={{ padding: '16px 24px' }} className="">
                         <button
                           onClick={() => toggleTableActive(table)}
                           style={{ padding: '10px 20px' }}
@@ -426,7 +426,7 @@ export default function AdminPage() {
                           {table.isActive ? '🟢 Hoạt động' : '🔴 Tạm ngưng'}
                         </button>
                       </td>
-                      <td className="px-5 py-3">
+                      <td style={{ padding: '16px 24px' }} className="">
                         <button
                           onClick={() => copyQRLink(table.number)}
                           style={{ padding: '10px 20px' }}
@@ -435,7 +435,7 @@ export default function AdminPage() {
                           📋 Copy link
                         </button>
                       </td>
-                      <td className="px-5 py-3 text-right">
+                      <td style={{ padding: '16px 24px' }} className=" text-right">
                         <div className="flex justify-end gap-2">
                           <button
                             onClick={() => startEditTable(table)}
@@ -556,33 +556,33 @@ export default function AdminPage() {
               <table className="w-full">
                 <thead>
                   <tr className="border-b border-pink-100">
-                    <th className="px-5 py-3 text-left text-xs font-semibold text-[#9B7D93] uppercase">Ảnh</th>
-                    <th className="px-5 py-3 text-left text-xs font-semibold text-[#9B7D93] uppercase">Tên món</th>
-                    <th className="px-5 py-3 text-left text-xs font-semibold text-[#9B7D93] uppercase">Danh mục</th>
-                    <th className="px-5 py-3 text-left text-xs font-semibold text-[#9B7D93] uppercase">Giá</th>
-                    <th className="px-5 py-3 text-left text-xs font-semibold text-[#9B7D93] uppercase">Trạng thái</th>
-                    <th className="px-5 py-3 text-right text-xs font-semibold text-[#9B7D93] uppercase">Thao tác</th>
+                    <th style={{ padding: '16px 24px' }} className=" text-left text-xs font-semibold text-[#9B7D93] uppercase">Ảnh</th>
+                    <th style={{ padding: '16px 24px' }} className=" text-left text-xs font-semibold text-[#9B7D93] uppercase">Tên món</th>
+                    <th style={{ padding: '16px 24px' }} className=" text-left text-xs font-semibold text-[#9B7D93] uppercase">Danh mục</th>
+                    <th style={{ padding: '16px 24px' }} className=" text-left text-xs font-semibold text-[#9B7D93] uppercase">Giá</th>
+                    <th style={{ padding: '16px 24px' }} className=" text-left text-xs font-semibold text-[#9B7D93] uppercase">Trạng thái</th>
+                    <th style={{ padding: '16px 24px' }} className=" text-right text-xs font-semibold text-[#9B7D93] uppercase">Thao tác</th>
                   </tr>
                 </thead>
                 <tbody>
                   {products.map((product) => (
                     <tr key={product._id} className={`border-b border-pink-50 hover:bg-pink-50/50 transition-colors ${!product.isAvailable ? 'opacity-50' : ''}`}>
-                      <td className="px-5 py-3">
+                      <td style={{ padding: '16px 24px' }} className="">
                         <img
                           src={product.image || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=80&h=80&fit=crop'}
                           alt={product.name}
                           className="w-12 h-12 rounded-lg object-cover"
                         />
                       </td>
-                      <td className="px-5 py-3">
+                      <td style={{ padding: '16px 24px' }} className="">
                         <div className="text-[#4A3347] font-medium">{product.name}</div>
                         {product.description && (
                           <div className="text-[#9B7D93] text-xs mt-0.5 truncate max-w-[200px]">{product.description}</div>
                         )}
                       </td>
-                      <td className="px-5 py-3 text-[#9B7D93] text-sm">{product.category}</td>
-                      <td className="px-5 py-3 text-pink-500 font-semibold">{formatPrice(product.price)}</td>
-                      <td className="px-5 py-3">
+                      <td style={{ padding: '16px 24px' }} className=" text-[#9B7D93] text-sm">{product.category}</td>
+                      <td style={{ padding: '16px 24px' }} className=" text-pink-500 font-semibold">{formatPrice(product.price)}</td>
+                      <td style={{ padding: '16px 24px' }} className="">
                         <button
                           onClick={() => toggleProductAvailable(product)}
                           style={{ padding: '10px 20px' }}
@@ -595,7 +595,7 @@ export default function AdminPage() {
                           {product.isAvailable ? '🟢 Đang bán' : '🔴 Hết hàng'}
                         </button>
                       </td>
-                      <td className="px-5 py-3 text-right">
+                      <td style={{ padding: '16px 24px' }} className=" text-right">
                         <div className="flex justify-end gap-2">
                           <button
                             onClick={() => startEditProduct(product)}

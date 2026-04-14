@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+﻿import { useState, useEffect, useCallback, useRef } from 'react';
 import api from '../utils/api';
 import socket from '../utils/socket';
 import OrderCard from '../components/OrderCard';
@@ -6,7 +6,7 @@ import Notification from '../components/Notification';
 
 /**
  * StaffDashboard - Dashboard real-time cho nhân viên
- * Tiệm dạo 5CE - Pink Pastel Theme
+ * Tiệm Dạo 5CE - Pink Pastel Theme
  * - Kết nối Socket.io và join 'staff-room'
  * - Lắng nghe NEW_ORDER → hiển thị thông báo + phát âm thanh
  * - Cập nhật trạng thái đơn hàng
@@ -206,7 +206,7 @@ export default function StaffDashboard() {
         <div className="max-w-5xl mx-auto">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h1 className="text-2xl font-bold gradient-text">Tiệm dạo 5CE</h1>
+              <h1 className="text-2xl font-bold gradient-text">Tiệm Dạo 5CE</h1>
               <p className="text-[#9B7D93] text-sm mt-1">Quản lý đơn hàng thời gian thực</p>
             </div>
 

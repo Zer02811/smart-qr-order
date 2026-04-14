@@ -1,7 +1,7 @@
-/**
+﻿/**
  * OrderCard - Card hiển thị đơn hàng trên Staff Dashboard
  * Hiển thị thông tin bàn, món, ghi chú, tổng tiền, trạng thái và nút cập nhật
- * Pink pastel theme - Tiệm dạo 5CE
+ * Pink pastel theme - Tiệm Dạo 5CE
  */
 export default function OrderCard({ order, onUpdateStatus }) {
   const formatPrice = (price) => {

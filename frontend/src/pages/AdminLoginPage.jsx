@@ -1,10 +1,10 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../utils/api';
 
 /**
  * AdminLoginPage - Trang đăng nhập admin
- * Tiệm dạo 5CE - Pink Pastel Theme
+ * Tiệm Dạo 5CE - Pink Pastel Theme
  */
 export default function AdminLoginPage() {
   const navigate = useNavigate();
@@ -44,7 +44,7 @@ export default function AdminLoginPage() {
           <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-pink-500 to-pink-400 flex items-center justify-center shadow-2xl shadow-pink-400/30 animate-float">
             <span className="text-4xl">🧋</span>
           </div>
-          <h1 className="text-2xl font-bold gradient-text">Tiệm dạo 5CE</h1>
+          <h1 className="text-2xl font-bold gradient-text">Tiệm Dạo 5CE</h1>
           <p className="text-[#9B7D93] text-sm mt-1">Đăng nhập quản trị</p>
         </div>
 

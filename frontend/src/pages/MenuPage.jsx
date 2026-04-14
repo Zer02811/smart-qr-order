@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import api from '../utils/api';
 import { useCart } from '../context/CartContext';
@@ -7,7 +7,7 @@ import CategoryFilter from '../components/CategoryFilter';
 
 /**
  * MenuPage - Trang menu cho khách hàng (Mobile First)
- * Tiệm dạo 5CE - Pink Pastel Theme
+ * Tiệm Dạo 5CE - Pink Pastel Theme
  * - Lấy tableNumber từ URL: /order?table=05
  * - Hiển thị danh sách món ăn theo category
  * - Floating cart badge ở dưới
@@ -73,7 +73,7 @@ export default function MenuPage() {
           {/* Title row */}
           <div className="flex items-center justify-between mb-3">
             <div>
-              <h1 className="text-2xl font-bold gradient-text">Tiệm dạo 5CE</h1>
+              <h1 className="text-2xl font-bold gradient-text">Tiệm Dạo 5CE</h1>
               <p className="text-[#9B7D93] text-sm mt-0.5 flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse inline-block"></span>
                 Bàn {tableNumber || '...'}
