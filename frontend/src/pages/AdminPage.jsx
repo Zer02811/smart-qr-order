@@ -1,4 +1,4 @@
-﻿import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../utils/api';
 
@@ -342,31 +342,24 @@ export default function AdminPage() {
               <h3 className="text-lg font-semibold text-[#4A3347] mb-4">
                 {editingTable ? '✏️ Sửa bàn' : '➕ Thêm bàn mới'}
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <input
                   type="text"
-                  placeholder="Số bàn (VD: 11)"
+                  placeholder="Số bàn"
                   value={tableForm.number}
                   onChange={(e) => setTableForm({ ...tableForm, number: e.target.value })}
                   required
                   disabled={!!editingTable}
-                  className="px-4 py-2.5 rounded-xl bg-pink-50/50 border border-pink-200 text-[#4A3347] placeholder-pink-300 focus:outline-none focus:border-pink-400 transition-colors disabled:opacity-50"
+                  style={{ padding: '14px 18px' }}
+                  className="rounded-xl bg-pink-50/50 border border-pink-200 text-[#4A3347] placeholder-pink-300 focus:outline-none focus:border-pink-400 transition-colors disabled:opacity-50"
                 />
                 <input
                   type="text"
-                  placeholder="Tên bàn (VD: Bàn VIP)"
+                  placeholder="Tên bàn"
                   value={tableForm.name}
                   onChange={(e) => setTableForm({ ...tableForm, name: e.target.value })}
-                  className="px-4 py-2.5 rounded-xl bg-pink-50/50 border border-pink-200 text-[#4A3347] placeholder-pink-300 focus:outline-none focus:border-pink-400 transition-colors"
-                />
-                <input
-                  type="number"
-                  placeholder="Số ghế"
-                  value={tableForm.seats}
-                  onChange={(e) => setTableForm({ ...tableForm, seats: parseInt(e.target.value) || 4 })}
-                  min="1"
-                  max="20"
-                  className="px-4 py-2.5 rounded-xl bg-pink-50/50 border border-pink-200 text-[#4A3347] focus:outline-none focus:border-pink-400 transition-colors"
+                  style={{ padding: '14px 18px' }}
+                  className="rounded-xl bg-pink-50/50 border border-pink-200 text-[#4A3347] placeholder-pink-300 focus:outline-none focus:border-pink-400 transition-colors"
                 />
                 <div className="flex gap-2">
                   <button
@@ -397,7 +390,6 @@ export default function AdminPage() {
                   <tr className="border-b border-pink-100">
                     <th style={{ padding: '16px 24px' }} className="text-left text-xs font-semibold text-[#9B7D93] uppercase">Số bàn</th>
                     <th style={{ padding: '16px 24px' }} className="text-left text-xs font-semibold text-[#9B7D93] uppercase">Tên</th>
-                    <th style={{ padding: '16px 24px' }} className="text-left text-xs font-semibold text-[#9B7D93] uppercase">Ghế</th>
                     <th style={{ padding: '16px 24px' }} className="text-left text-xs font-semibold text-[#9B7D93] uppercase">Trạng thái</th>
                     <th style={{ padding: '16px 24px' }} className="text-left text-xs font-semibold text-[#9B7D93] uppercase">QR Link</th>
                     <th style={{ padding: '16px 24px' }} className="text-right text-xs font-semibold text-[#9B7D93] uppercase">Thao tác</th>
@@ -412,7 +404,6 @@ export default function AdminPage() {
                         </span>
                       </td>
                       <td style={{ padding: '16px 24px' }} className=" text-[#4A3347]">{table.name}</td>
-                      <td style={{ padding: '16px 24px' }} className=" text-[#9B7D93]">{table.seats} ghế</td>
                       <td style={{ padding: '16px 24px' }} className="">
                         <button
                           onClick={() => toggleTableActive(table)}
