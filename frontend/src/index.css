@@ -1,4 +1,4 @@
-﻿@import 'tailwindcss';
+@import 'tailwindcss';
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap');
 
 /* ============================================
@@ -139,7 +139,7 @@ body {
 .category-tab {
   transition: all 0.3s ease;
   cursor: pointer;
-  padding: 14px 30px !important;
+  padding: 14px 30px;
   border-radius: 50px;
   font-size: 15px;
   font-weight: 700;

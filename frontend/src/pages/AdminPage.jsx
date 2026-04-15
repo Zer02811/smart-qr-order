@@ -310,10 +310,10 @@ export default function AdminPage() {
         </div>
 
         {/* Tabs */}
-        <div className="max-w-6xl mx-auto flex gap-3 mt-5">
+        <div className="max-w-6xl mx-auto flex justify-center gap-3 mt-5" style={{ padding: '0 16px' }}>
           <button
             onClick={() => setActiveTab('tables')}
-            style={{ padding: '10px 16px', fontSize: '13px' }}
+            style={{ padding: '8px 16px', fontSize: '13px' }}
             className={`category-tab ${activeTab === 'tables' ? 'active' : ''}`}
             id="tab-tables"
           >
@@ -321,7 +321,7 @@ export default function AdminPage() {
           </button>
           <button
             onClick={() => setActiveTab('products')}
-            style={{ padding: '10px 16px', fontSize: '13px' }}
+            style={{ padding: '8px 16px', fontSize: '13px' }}
             className={`category-tab ${activeTab === 'products' ? 'active' : ''}`}
             id="tab-products"
           >
